@@ -4,28 +4,33 @@
 # For Hard, secret number is 45
 
 
-# defining the easy level and calling the execution program
+# defining the easy level and calling the execution function
 def easy_game():
     print("Easy Level")
     print("In this level, you are expected to guess any number between 1 and 10 and you have 6 guesses to make")
     execution(5, 0, 6, 10)
 
 
-# defining the medium level and calling the execution program
+# defining the medium level and calling the execution function
 def medium_game():
     print("Medium Level")
     print("In this level, you are expected to guess any number between 1 and 20 and you have 4 guesses to make")
     execution(15, 0, 4, 20)
 
 
-# defining the hard level and calling the execution program
+# defining the hard level and calling the execution function
 def hard_game():
     print("Hard Level")
     print("In this level, you are expected to guess any number between 1 and 50 and you have only 3 guesses to make")
     execution(45, 0, 3, 50)
 
 
-# the execution program for the game
+# this is the execution function for the game
+# this function takes four arguments:
+# the secret number to be guessed,
+# a counter that counts the number of guesses,
+# the limit specified for the guesses in each level and also
+# the last digit in the range of guess numbers for each level
 def execution(secret_number, guess_count, guess_limit, last_digit):
     num_range = list(range(1, last_digit+1))
     while guess_count < guess_limit:
