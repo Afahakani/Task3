@@ -1,3 +1,4 @@
+# A number guessing game with three levels: Easy, Medium and Hard
 # defining the easy level and calling the execution program
 def easy_game():
     print("Easy Number Guess Game")
