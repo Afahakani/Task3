@@ -1,42 +1,43 @@
-# A number guessing game with three levels: Easy, Medium and Hard
-# For Easy, secret number is 5
-# For Medium, secret number is 15
-# For Hard, secret number is 45
+# A number guessing game with three difficulty levels: Easy, Medium and Hard
+# the secret number is generated from a random code
+# guess count is initially set to 0
+
+import random
 
 
 # defining the easy level and calling the execution function
-def easy_game():
+def easy_level():
     print("Easy Level")
     print("In this level, you are expected to guess any number between 1 and 10 and you have 6 guesses to make")
-    execution(5, 0, 6, 10)
+    execution(6, 10)
 
 
 # defining the medium level and calling the execution function
-def medium_game():
+def medium_level():
     print("Medium Level")
     print("In this level, you are expected to guess any number between 1 and 20 and you have 4 guesses to make")
-    execution(15, 0, 4, 20)
+    execution(4, 20)
 
 
 # defining the hard level and calling the execution function
-def hard_game():
+def hard_level():
     print("Hard Level")
     print("In this level, you are expected to guess any number between 1 and 50 and you have only 3 guesses to make")
-    execution(45, 0, 3, 50)
+    execution(3, 50)
 
 
 # this is the execution function for the game
-# this function takes four arguments:
-# the secret number to be guessed,
-# a counter that counts the number of guesses,
+# this function takes two arguments:
 # the limit specified for the guesses in each level and also
 # the last digit in the range of guess numbers for each level
-def execution(secret_number, guess_count, guess_limit, last_digit):
-    num_range = list(range(1, last_digit+1))
+def execution(guess_limit, last_digit):
+    guess_count = 0
+    secret_number = random.randint(1, last_digit)
+    guess_range = list(range(1, last_digit+1))
     while guess_count < guess_limit:
         try:
             guess = int(input("Enter your guess number: "))
-            if guess not in num_range:
+            if guess not in guess_range:
                 print(guess, "is not in Range! Enter a number between 1 and " + str(last_digit))
                 continue
             if guess == secret_number:
@@ -47,7 +48,7 @@ def execution(secret_number, guess_count, guess_limit, last_digit):
                 guess_count += 1
                 print("You have " + str(guess_limit - guess_count) + " chance(s) remaining")
         except ValueError:
-            print("You are expected to enter only numbers")
+            print("Wrong Input! You are expected to enter only numbers")
     else:
         print("Game Over!")
     exit(0)
@@ -56,17 +57,17 @@ def execution(secret_number, guess_count, guess_limit, last_digit):
 # creating the game's different levels and calling the user's choice
 def guessing_game():
     print("""Welcome to Number Guessing Game!
-There are three Levels in this game: Choose any to play
+There are three difficulty Levels in this game. Choose any to play:
     Easy
     Medium
     Hard """)
     user_choice = input("Enter your game level choice: ").lower()
     if user_choice == "easy":
-        easy_game()
+        easy_level()
     elif user_choice == "medium":
-        medium_game()
+        medium_level()
     elif user_choice == "hard":
-        hard_game()
+        hard_level()
     else:
         print("Sorry! You entered a wrong choice")
         exit(0)
